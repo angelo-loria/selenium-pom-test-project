@@ -1,2 +1,2 @@
 # selenium-pom-test-project
-C#/Selenium project demostrating page object model framework
+This is a C#/Selenium project demostrating page object model framework, running tests on http://store.demoqa.com/. 
