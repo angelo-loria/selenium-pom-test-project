@@ -42,13 +42,11 @@ namespace ToolsQaStoreProject.Tests
                     break;
             }
 
-            Thread.Sleep(500);
             driver.Navigate().GoToUrl("http://store.demoqa.com/");
         }
 
         public void HelperCleanUp()
         {
-            driver.Close();
             driver.Quit();
         }
     }

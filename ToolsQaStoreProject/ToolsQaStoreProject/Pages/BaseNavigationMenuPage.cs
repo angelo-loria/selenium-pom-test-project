@@ -10,34 +10,33 @@ using OpenQA.Selenium.Support.UI;
 
 namespace ToolsQaStoreProject.Pages
 {
-    public class BaseNavigationMenuPage
+    public class BaseNavigationMenuPage : PageElements
     {
 
         public IWebDriver driver;
 
-        public BaseNavigationMenuPage(IWebDriver driver)
+        public BaseNavigationMenuPage(IWebDriver driver) 
         {
             this.driver = driver;
         }
 
         public bool NavigationMenuDisplayed()
         {
-            var navMenu = driver.FindElement(By.Id("main-nav")).Displayed;
-            return navMenu;
+            return driver.FindElement(navigationMenu).Displayed;
         }
 
         public BaseNavigationMenuPage SelectNavMenuButton(string button)
         {
-            var buttons = driver.FindElements(By.CssSelector("#main-nav ul li a"));
+            var tabs = driver.FindElements(navigationMenuTabs);
 
             switch (button.ToLower())
             {
                 case "home":
-                    buttons.FirstOrDefault(x => x.Text.Contains(button)).Click();
+                    tabs.FirstOrDefault(x => x.Text.Contains(button)).Click();
                     return new HomePage(driver);                   
 
                 case "product category":
-                    buttons.FirstOrDefault(x => x.Text.Contains(button)).Click();
+                    tabs.FirstOrDefault(x => x.Text.Contains(button)).Click();
                     return new ProductCategoryPage(driver);                   
 
             }
@@ -78,11 +77,13 @@ namespace ToolsQaStoreProject.Pages
 
         private void HoverOverProductCategory()
         {
-            var prodCategory = driver.FindElement(By.Id("menu-item-33"));
+            var prodCategory = driver.FindElement(productCategoryTab);
             Actions action = new Actions(driver);
             action.MoveToElement(prodCategory);
             action.Perform();
         }
+
+
 
     }
 }

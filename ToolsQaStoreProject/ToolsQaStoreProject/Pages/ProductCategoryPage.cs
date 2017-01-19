@@ -12,12 +12,7 @@ namespace ToolsQaStoreProject.Pages
     public class ProductCategoryPage : BaseNavigationMenuPage
     {
         public IWebDriver driver;
-
-        private static readonly By productTitles = By.CssSelector("div.default_product_display div h2 a");
         private static IReadOnlyCollection<IWebElement> products;
-        private static readonly By inputBtn = By.ClassName("input-button-buy");
-
-
 
         public ProductCategoryPage(IWebDriver driver) : base(driver)
         {
@@ -31,19 +26,19 @@ namespace ToolsQaStoreProject.Pages
 
         public bool ProductCategoryHeaderDisplayed(string headerText)
         {
-            var headerElement = driver.FindElement(By.CssSelector("header.page-header h1"));
+            var headerElement = driver.FindElement(pageHeader);
             return headerElement.Text.Equals(headerText);
         }
 
         public bool ProductDisplayed(string product)
         {
-            products = driver.WaitForElementsDisplayed(productTitles);
+            products = driver.FindElements(productTitles);
             return products.FirstOrDefault(x => x.Text.StartsWith(product)).Displayed;
         }
 
         public ProductDetailPage SelectProduct(string product)
         {
-            products = driver.WaitForElementsDisplayed(productTitles);
+            products = driver.FindElements(productTitles);
             products.FirstOrDefault(x => x.Text.StartsWith(product)).Click();
             return new ProductDetailPage(driver);
         }
@@ -51,19 +46,18 @@ namespace ToolsQaStoreProject.Pages
         public void ClickAddToCartBtn(int buttonIndex)
         {
             var buttons = driver.FindElements(inputBtn);
-            buttons[buttonIndex].Click();;
+            buttons[buttonIndex].Click();
         }
 
         public bool CartNotificationDislpayed(string text)
         {
             Thread.Sleep(2000);
-            var notification = driver.FindElement(By.Id("fancy_notification_content"));
-            return notification.Text.Contains(text);
+            return driver.FindElement(cartNotification).Text.Contains(text);
         }
 
         public CheckoutPage SelectGoToCheckout()
         {
-            driver.FindElement(By.ClassName("go_to_checkout")).Click();
+            driver.FindElement(goToCheckoutBtn).Click();
             return new CheckoutPage(driver);
         }
     }

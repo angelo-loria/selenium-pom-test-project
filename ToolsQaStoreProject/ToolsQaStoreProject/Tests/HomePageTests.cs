@@ -28,7 +28,7 @@ namespace ToolsQaStoreProject.Tests
 
         [TestMethod]
         [TestCategory("HomePage")]
-        public void AssertHomePageDisplayed()
+        public void HomePageDisplayed()
         {
             HomePage homePage = new HomePage(driver);
             Assert.IsTrue(homePage.HomePageTitle("ONLINE STORE | Toolsqa Dummy Test site"));
@@ -38,7 +38,7 @@ namespace ToolsQaStoreProject.Tests
         [TestMethod]
         [TestCategory("HomePage")]
 
-        public void AssertCarouselSlidesDisplayed()
+        public void CarouselSlidesDisplayed()
         {
             HomePage homePage = new HomePage(driver);
             Assert.IsTrue(homePage.CarouselSlideDisplayed("iPod Nano Blue"));

@@ -31,31 +31,28 @@ namespace ToolsQaStoreProject.Pages
 
         private bool LoopThroughSlides(string slideProduct)
         {
-            var slideButtons = driver.FindElements(By.CssSelector("ul#slide_menu a"));
+            var slides = driver.FindElements(slideSelector);
 
-            slideButtons[0].Click();
-            Thread.Sleep(1000);
+            slides[0].Click();
 
             var slideHeaderText =
-                driver.FindElement(By.CssSelector("div.product_description")).Text;
+                driver.WaitForElementDisplayed(slideHeader).Text;
 
             if (!slideHeaderText.StartsWith(slideProduct))
             {
 
-                slideButtons[1].Click();
-                Thread.Sleep(1000);
+                slides[1].Click();
 
                 slideHeaderText =
-                    driver.FindElement(By.CssSelector("div.product_description")).Text;
+                    driver.WaitForElementDisplayed(slideHeader).Text;
 
                 if (!slideHeaderText.StartsWith(slideProduct))
                 {
 
-                    slideButtons[2].Click();
-                    Thread.Sleep(1000);
+                    slides[2].Click();
 
                     slideHeaderText =
-                        driver.FindElement(By.CssSelector("div.product_description")).Text;
+                      driver.WaitForElementDisplayed(slideHeader).Text;
 
                     if (!slideHeaderText.StartsWith(slideProduct))
                     {

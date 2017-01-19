@@ -32,7 +32,7 @@ namespace ToolsQaStoreProject.Tests
 
         [TestMethod]
         [TestCategory("ProductCategoryPage")]
-        public void AssertProductCategoryPageDisplayed()
+        public void ProductCategoryPageDisplayed()
         {
             HomePage homePage = new HomePage(driver);
             homePage.SelectNavMenuButton("Product Category");
@@ -43,7 +43,7 @@ namespace ToolsQaStoreProject.Tests
 
         [TestMethod]
         [TestCategory("ProductCategoryPage")]
-        public void AssertProductsListed()
+        public void ProductsListed()
         {
             HomePage homePage = new HomePage(driver);
             homePage.SelectNavMenuButton("Product Category");

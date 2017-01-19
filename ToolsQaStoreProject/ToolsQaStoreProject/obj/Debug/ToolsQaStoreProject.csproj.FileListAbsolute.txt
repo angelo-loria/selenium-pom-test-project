@@ -10,3 +10,15 @@ C:\Users\aloria\Documents\Visual Studio 2015\Projects\ToolsQaStoreProject\ToolsQ
 C:\Users\aloria\Documents\Visual Studio 2015\Projects\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.dll
 C:\Users\aloria\Documents\Visual Studio 2015\Projects\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.pdb
 C:\Users\aloria\Documents\Visual Studio 2015\Projects\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.csprojResolveAssemblyReference.cache
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\chromedriver.exe
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\ToolsQaStoreProject.dll.config
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\ToolsQaStoreProject.dll
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\ToolsQaStoreProject.pdb
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\WebDriver.dll
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\WebDriver.Support.dll
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\WebDriver.xml
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\WebDriver.Support.xml
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.csprojResolveAssemblyReference.cache
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.dll
+C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.pdb
