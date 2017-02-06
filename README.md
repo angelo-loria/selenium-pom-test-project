@@ -9,5 +9,5 @@ Test classes are located in the Tests folder. There are currently three test cla
 # Page Classes
 These classes each represent a page on http://store.demoqa.com/, and contain the methods used by the test classes that manipulate elements on those pages. All of these pages use the BaseNavigationMenuPage, which represents the navigation menu that is present on nearly every page of the site and in turn, the PageElement subclass, which contains all of the explicitly-defined page elements as properties. 
 
-# App.config
-The App.config file allows you to set the browser. Currently, Chromedriver is the only driver present, but this will be expanded upon in the future.
+# Browser Selection
+Browser selection is done through selecting a .runsettings file using the Test Settings menu, under Test -> Select Test Settings file. Currently the project supports Chrome and Edge browsers. 
