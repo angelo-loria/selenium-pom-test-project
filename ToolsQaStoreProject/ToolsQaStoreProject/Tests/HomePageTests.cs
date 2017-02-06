@@ -11,6 +11,7 @@ namespace ToolsQaStoreProject.Tests
         /// <summary>
         /// https://github.com/angelo-loria/selenium-pom-test-project
         /// Selenium/POM framework example using .Net and Selenium. 
+        /// Please select browser using the Test menu -> Test Settings -> Chrome.runsettings || Edge.runsettings
         /// Angelo Loria 01/2017
         /// </summary>
 

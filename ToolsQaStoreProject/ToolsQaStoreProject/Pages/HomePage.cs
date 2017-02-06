@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,43 +27,37 @@ namespace ToolsQaStoreProject.Pages
 
         public bool CarouselSlideDisplayed(string slideProduct)
         {
-            return LoopThroughSlides(slideProduct);
-        }
+            var slideBtns = driver.FindElements(slideSelector);
+            int slide = 0;
 
-        private bool LoopThroughSlides(string slideProduct)
-        {
-            var slides = driver.FindElements(slideSelector);
+            slideBtns[slide].Click();
 
-            slides[0].Click();
+            var displayedHeader =
+                driver.FindElements(By.ClassName("product_description")).FirstOrDefault(x => x.Displayed).Text;
 
-            var slideHeaderText =
-                driver.WaitForElementDisplayed(slideHeader).Text;
-
-            if (!slideHeaderText.StartsWith(slideProduct))
+            while (!displayedHeader.Equals(slideProduct))
             {
+                slideBtns[slide].Click();
+                Thread.Sleep(1000);
 
-                slides[1].Click();
+                displayedHeader =
+                    driver.FindElements(By.ClassName("product_description")).FirstOrDefault(x => x.Displayed).Text;
 
-                slideHeaderText =
-                    driver.WaitForElementDisplayed(slideHeader).Text;
-
-                if (!slideHeaderText.StartsWith(slideProduct))
+                if (displayedHeader.StartsWith(slideProduct))
                 {
-
-                    slides[2].Click();
-
-                    slideHeaderText =
-                      driver.WaitForElementDisplayed(slideHeader).Text;
-
-                    if (!slideHeaderText.StartsWith(slideProduct))
-                    {
-                        return false;
-                    }
+                    return true;
                 }
-            }
 
+                slide++;
+
+                if (slide > 2)
+                {
+                    return false;
+                }
+            }           
             return true;
         }
+
     }
 }
 

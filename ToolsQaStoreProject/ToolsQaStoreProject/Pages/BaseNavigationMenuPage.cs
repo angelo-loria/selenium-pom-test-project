@@ -63,7 +63,7 @@ namespace ToolsQaStoreProject.Pages
 
                 case "ipods":
                     HoverOverProductCategory();
-                    var ipods = driver.FindElement(By.Id("menu-item-38"));
+                    var ipods = driver.WaitForElementDisplayed(By.Id("menu-item-38"));
                     ipods.Click();
                     return new ProductCategoryPage(driver);
 
@@ -79,8 +79,7 @@ namespace ToolsQaStoreProject.Pages
         {
             var prodCategory = driver.FindElement(productCategoryTab);
             Actions action = new Actions(driver);
-            action.MoveToElement(prodCategory);
-            action.Perform();
+            action.MoveToElement(prodCategory).ClickAndHold(prodCategory).Build().Perform();
         }
 
 

@@ -12,14 +12,14 @@ namespace ToolsQaStoreProject.Pages
         #region HomePage Elements
 
         public static readonly By slideSelector = By.CssSelector("ul#slide_menu a");
-        public static readonly By slideHeader = By.CssSelector("div.product_description");
+        public static readonly By slideHeader = By.ClassName("product_description");
         #endregion
 
         #region ProductCategoryPage Elements
 
-        public static readonly By productTitles = By.CssSelector("div.default_product_display div h2 a");
+        public static readonly By productTitles = By.ClassName("wpsc_product_title");
         public static readonly By inputBtn = By.ClassName("input-button-buy");
-        public static readonly By pageHeader = By.CssSelector("header.page-header h1");
+        public static readonly By pageHeader = By.ClassName("entry-title");
         public static readonly By cartNotification = By.Id("fancy_notification_content");
         public static readonly By goToCheckoutBtn = By.ClassName("go_to_checkout");
 

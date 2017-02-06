@@ -21,34 +21,34 @@ namespace ToolsQaStoreProject.Pages
 
         public bool SubTotalDisplayed(string price)
         {
-            return driver.FindElement(subTotal).Text.Contains(price);
+            return driver.WaitForTextDisplayed(subTotal, price);
         }
 
         public bool ProductListed(int productIndex, string product)
         {
             var products = 
-                driver.FindElements(productRow);
+                driver.WaitForElementsDisplayed(productRow);
             return products[productIndex].Text.Contains(product);
         }
 
         public bool QuantityListed(int quantityIndex, string quantity)
         {
             var quantities = 
-                driver.FindElements(quantityField);
+                driver.WaitForElementsDisplayed(quantityField);
             return quantities[quantityIndex].GetAttribute("value").Equals(quantity);
         }
 
         public bool ProductPriceDisplayed(int priceIndex, string price)
         {
             var prices =
-                driver.FindElements(priceField);
+                driver.WaitForElementsDisplayed(priceField);
             return prices[priceIndex].Text.Contains(price);
         }
 
         public bool ProductPriceTotalDisplayed(int priceTotalIndex, string price)
         {
             var prices =
-                driver.FindElements(totalField);
+                driver.WaitForElementsDisplayed(totalField);
             return prices[priceTotalIndex].Text.Contains(price);
         }
     }

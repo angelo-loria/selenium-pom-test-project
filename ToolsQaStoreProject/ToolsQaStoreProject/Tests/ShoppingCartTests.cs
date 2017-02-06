@@ -34,13 +34,12 @@ namespace ToolsQaStoreProject.Tests
         {
             HomePage homePage = new HomePage(driver);
             var productCategoryPage = (ProductCategoryPage)homePage.SelectProductCategory("ipods");
-            Assert.IsTrue(productCategoryPage.ProductCategoryHeaderDisplayed("iPods"));
             Assert.IsTrue(productCategoryPage.ProductDisplayed("Magic Mouse"));
             Assert.IsTrue(productCategoryPage.ProductDisplayed("Apple iPod touch 32GB 5th Generation – Black"));
             Assert.IsTrue(productCategoryPage.ProductDisplayed("Apple iPod touch Large"));
             productCategoryPage.ClickAddToCartBtn(2);
             Assert.IsTrue(productCategoryPage.CartNotificationDislpayed("You just added \"Apple iPod touch Large\" to your cart."));
-            var checkoutPage = (CheckoutPage) productCategoryPage.SelectGoToCheckout();
+            var checkoutPage = (CheckoutPage)productCategoryPage.SelectGoToCheckout();
             Assert.IsTrue(checkoutPage.SubTotalDisplayed("$10.00"));
             Assert.IsTrue(checkoutPage.ProductListed(0, "Apple iPod touch Large"));
             Assert.IsTrue(checkoutPage.QuantityListed(0, "1"));

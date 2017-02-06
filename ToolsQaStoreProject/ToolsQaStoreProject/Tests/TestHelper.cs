@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Configuration;
+using System.Drawing;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
@@ -22,12 +24,13 @@ namespace ToolsQaStoreProject.Tests
     public class TestHelper
     {
         public IWebDriver driver;
+        public TestContext TestContext { get; set; }
 
         public void HelperInitialize()
         {
-            var browser = ConfigurationManager.AppSettings["browser"];
+            var browser = TestContext.Properties["browser"].ToString().ToLower();
 
-            switch (browser.ToLower())
+            switch (browser)
             {
                 case "chrome":
                     ChromeOptions options = new ChromeOptions();
@@ -36,13 +39,20 @@ namespace ToolsQaStoreProject.Tests
                     driver = new ChromeDriver(options);
                     break;
 
-                case "firefox":
-                    driver = new FirefoxDriver();
-                    driver.Manage().Window.Maximize();
+                case "edge":                 
+                    driver = new EdgeDriver();
                     break;
             }
 
             driver.Navigate().GoToUrl("http://store.demoqa.com/");
+
+            // step to delete cookies in Edge as it does not start new session every test run
+
+            if (browser.Equals("edge"))
+            {
+                driver.Manage().Cookies.DeleteAllCookies();
+                driver.Navigate().Refresh();
+            }
         }
 
         public void HelperCleanUp()

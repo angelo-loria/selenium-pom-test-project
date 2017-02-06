@@ -26,19 +26,20 @@ namespace ToolsQaStoreProject.Pages
 
         public bool ProductCategoryHeaderDisplayed(string headerText)
         {
-            var headerElement = driver.FindElement(pageHeader);
-            return headerElement.Text.Equals(headerText);
+            return driver.WaitForTextDisplayed(pageHeader, headerText);
         }
 
         public bool ProductDisplayed(string product)
         {
-            products = driver.FindElements(productTitles);
+            products = 
+                driver.WaitForElementsDisplayed(productTitles);
             return products.FirstOrDefault(x => x.Text.StartsWith(product)).Displayed;
         }
 
         public ProductDetailPage SelectProduct(string product)
         {
-            products = driver.FindElements(productTitles);
+            products = 
+                driver.FindElements(productTitles);
             products.FirstOrDefault(x => x.Text.StartsWith(product)).Click();
             return new ProductDetailPage(driver);
         }
@@ -51,13 +52,12 @@ namespace ToolsQaStoreProject.Pages
 
         public bool CartNotificationDislpayed(string text)
         {
-            Thread.Sleep(2000);
-            return driver.FindElement(cartNotification).Text.Contains(text);
+            return driver.WaitForTextDisplayed(cartNotification, text);
         }
 
         public CheckoutPage SelectGoToCheckout()
         {
-            driver.FindElement(goToCheckoutBtn).Click();
+            driver.WaitForElementDisplayed(goToCheckoutBtn).Click();
             return new CheckoutPage(driver);
         }
     }
