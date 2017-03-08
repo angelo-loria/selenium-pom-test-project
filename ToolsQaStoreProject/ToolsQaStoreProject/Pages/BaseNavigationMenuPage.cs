@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace ToolsQaStoreProject.Pages
 {
-    public class BaseNavigationMenuPage : PageElements
+    public class BaseNavigationMenuPage 
     {
-
+        private IWebElement _navigationMenu => driver.WaitForElementDisplayed(By.Id("main-nav"));
+        private ReadOnlyCollection<IWebElement> _navigationMenuTabs => driver.WaitForElementsDisplayed(By.CssSelector("#main-nav ul li a"));
+        private IWebElement _productCategoryTab => driver.WaitForElementDisplayed(By.Id("menu-item-33"));
+        private IWebElement _ipodProductCategory => driver.WaitForElementDisplayed(By.Id("menu-item-38"));
         public IWebDriver driver;
 
         public BaseNavigationMenuPage(IWebDriver driver) 
@@ -22,21 +26,20 @@ namespace ToolsQaStoreProject.Pages
 
         public bool NavigationMenuDisplayed()
         {
-            return driver.FindElement(navigationMenu).Displayed;
+            return _navigationMenu.Displayed;
         }
 
         public BaseNavigationMenuPage SelectNavMenuButton(string button)
         {
-            var tabs = driver.FindElements(navigationMenuTabs);
 
             switch (button.ToLower())
             {
                 case "home":
-                    tabs.FirstOrDefault(x => x.Text.Contains(button)).Click();
+                    _navigationMenuTabs.FirstOrDefault(x => x.Text.Contains(button)).Click();
                     return new HomePage(driver);                   
 
                 case "product category":
-                    tabs.FirstOrDefault(x => x.Text.Contains(button)).Click();
+                    _navigationMenuTabs.FirstOrDefault(x => x.Text.Contains(button)).Click();
                     return new ProductCategoryPage(driver);                   
 
             }
@@ -63,8 +66,7 @@ namespace ToolsQaStoreProject.Pages
 
                 case "ipods":
                     HoverOverProductCategory();
-                    var ipods = driver.WaitForElementDisplayed(By.Id("menu-item-38"));
-                    ipods.Click();
+                    _ipodProductCategory.Click();
                     return new ProductCategoryPage(driver);
 
                 case "macbooks":
@@ -77,9 +79,8 @@ namespace ToolsQaStoreProject.Pages
 
         private void HoverOverProductCategory()
         {
-            var prodCategory = driver.FindElement(productCategoryTab);
             Actions action = new Actions(driver);
-            action.MoveToElement(prodCategory).ClickAndHold(prodCategory).Build().Perform();
+            action.MoveToElement(_productCategoryTab).ClickAndHold(_productCategoryTab).Build().Perform();
         }
 
 

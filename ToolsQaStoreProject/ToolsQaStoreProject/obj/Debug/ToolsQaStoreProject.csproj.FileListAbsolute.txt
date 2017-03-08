@@ -21,5 +21,4 @@ C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\T
 C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.csprojResolveAssemblyReference.cache
 C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.dll
 C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\obj\Debug\ToolsQaStoreProject.pdb
-C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\geckodriver.exe
 C:\Users\aloria\Documents\GitHub\selenium-pom-test-project\ToolsQaStoreProject\ToolsQaStoreProject\bin\Debug\MicrosoftWebDriver.exe

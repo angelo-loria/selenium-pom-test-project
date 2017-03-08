@@ -13,12 +13,16 @@ namespace ToolsQaStoreProject.Pages
 {
     public class HomePage : BaseNavigationMenuPage
     {
+        private ReadOnlyCollection<IWebElement> _slideSelectorBtns => driver.FindElements(By.CssSelector("ul#slide_menu a"));
+        private ReadOnlyCollection<IWebElement> _slideHeaders => driver.FindElements(By.ClassName("product_description"));
+
         public IWebDriver driver;
 
         public HomePage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
         }
+
 
         public bool HomePageTitle(string title)
         {
@@ -27,21 +31,20 @@ namespace ToolsQaStoreProject.Pages
 
         public bool CarouselSlideDisplayed(string slideProduct)
         {
-            var slideBtns = driver.FindElements(slideSelector);
             int slide = 0;
 
-            slideBtns[slide].Click();
+            _slideSelectorBtns[slide].Click();
 
             var displayedHeader =
-                driver.FindElements(By.ClassName("product_description")).FirstOrDefault(x => x.Displayed).Text;
+                _slideHeaders.FirstOrDefault(x => x.Displayed).Text;
 
             while (!displayedHeader.Equals(slideProduct))
             {
-                slideBtns[slide].Click();
+                _slideSelectorBtns[slide].Click();
                 Thread.Sleep(1000);
 
                 displayedHeader =
-                    driver.FindElements(By.ClassName("product_description")).FirstOrDefault(x => x.Displayed).Text;
+                    _slideHeaders.FirstOrDefault(x => x.Displayed).Text;
 
                 if (displayedHeader.StartsWith(slideProduct))
                 {

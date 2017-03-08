@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -11,6 +12,16 @@ namespace ToolsQaStoreProject.Pages
 {
     public class ProductCategoryPage : BaseNavigationMenuPage
     {
+        private ReadOnlyCollection<IWebElement> _productTitles
+            => driver.WaitForElementsDisplayed(By.ClassName("wpsc_product_title"));
+
+        private ReadOnlyCollection<IWebElement> _inputBtns 
+            => driver.WaitForElementsDisplayed(By.ClassName("input-button-buy"));
+
+        private readonly By _pageHeader = By.ClassName("entry-title");
+        private readonly By _cartNotification = By.Id("fancy_notification_content");
+        private IWebElement _goToCheckoutBtn => driver.WaitForElementDisplayed(By.ClassName("go_to_checkout"));
+
         public IWebDriver driver;
         private static IReadOnlyCollection<IWebElement> products;
 
@@ -26,38 +37,35 @@ namespace ToolsQaStoreProject.Pages
 
         public bool ProductCategoryHeaderDisplayed(string headerText)
         {
-            return driver.WaitForTextDisplayed(pageHeader, headerText);
+            return driver.WaitForTextDisplayed(_pageHeader, headerText);
         }
 
         public bool ProductDisplayed(string product)
         {
-            products = 
-                driver.WaitForElementsDisplayed(productTitles);
-            return products.FirstOrDefault(x => x.Text.StartsWith(product)).Displayed;
+
+            return _productTitles.FirstOrDefault(x => x.Text.StartsWith(product)).Displayed;
         }
 
         public ProductDetailPage SelectProduct(string product)
-        {
-            products = 
-                driver.FindElements(productTitles);
-            products.FirstOrDefault(x => x.Text.StartsWith(product)).Click();
+        {          
+            _productTitles.FirstOrDefault(x => x.Text.StartsWith(product)).Click();
             return new ProductDetailPage(driver);
         }
 
         public void ClickAddToCartBtn(int buttonIndex)
         {
-            var buttons = driver.FindElements(inputBtn);
-            buttons[buttonIndex].Click();
+            _inputBtns[buttonIndex].Click();
         }
+
 
         public bool CartNotificationDislpayed(string text)
         {
-            return driver.WaitForTextDisplayed(cartNotification, text);
+            return driver.WaitForTextDisplayed(_cartNotification, text);
         }
 
         public CheckoutPage SelectGoToCheckout()
         {
-            driver.WaitForElementDisplayed(goToCheckoutBtn).Click();
+            _goToCheckoutBtn.Click();
             return new CheckoutPage(driver);
         }
     }

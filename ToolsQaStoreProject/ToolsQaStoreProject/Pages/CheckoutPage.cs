@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,6 +11,12 @@ namespace ToolsQaStoreProject.Pages
 {
     public class CheckoutPage : BaseNavigationMenuPage
     {
+        private static By _subTotal = By.CssSelector(".yourtotal .pricedisplay");
+        private ReadOnlyCollection<IWebElement> _productRows => driver.WaitForElementsDisplayed(By.CssSelector("tr.product_row a"));
+        private ReadOnlyCollection<IWebElement> _quantityFields => driver.WaitForElementsDisplayed(By.CssSelector("tr.product_row [name='quantity']"));
+
+        private ReadOnlyCollection<IWebElement> _priceFields => driver.WaitForElementsDisplayed(By.CssSelector("tr.product_row .pricedisplay"));
+        private ReadOnlyCollection<IWebElement> _totalFields => driver.WaitForElementsDisplayed(By.CssSelector(".wpsc_product_price .pricedisplay"));
 
         public IWebDriver driver;
 
@@ -21,35 +28,27 @@ namespace ToolsQaStoreProject.Pages
 
         public bool SubTotalDisplayed(string price)
         {
-            return driver.WaitForTextDisplayed(subTotal, price);
+            return driver.WaitForTextDisplayed(_subTotal, price);
         }
 
         public bool ProductListed(int productIndex, string product)
         {
-            var products = 
-                driver.WaitForElementsDisplayed(productRow);
-            return products[productIndex].Text.Contains(product);
+            return _productRows[productIndex].Text.Contains(product);
         }
 
         public bool QuantityListed(int quantityIndex, string quantity)
         {
-            var quantities = 
-                driver.WaitForElementsDisplayed(quantityField);
-            return quantities[quantityIndex].GetAttribute("value").Equals(quantity);
+            return _quantityFields[quantityIndex].GetAttribute("value").Equals(quantity);
         }
 
         public bool ProductPriceDisplayed(int priceIndex, string price)
         {
-            var prices =
-                driver.WaitForElementsDisplayed(priceField);
-            return prices[priceIndex].Text.Contains(price);
+            return _priceFields[priceIndex].Text.Contains(price);
         }
 
         public bool ProductPriceTotalDisplayed(int priceTotalIndex, string price)
         {
-            var prices =
-                driver.WaitForElementsDisplayed(totalField);
-            return prices[priceTotalIndex].Text.Contains(price);
+            return _totalFields[priceTotalIndex].Text.Contains(price);
         }
     }
 }

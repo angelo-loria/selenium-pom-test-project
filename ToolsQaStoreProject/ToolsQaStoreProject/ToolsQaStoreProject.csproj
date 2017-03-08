@@ -66,7 +66,6 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Pages\BaseNavigationMenuPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
-    <Compile Include="Pages\PageElements.cs" />
     <Compile Include="Pages\ProductCategoryPage.cs" />
     <Compile Include="Pages\ProductDetailPage.cs" />
     <Compile Include="Tests\ProductCategoryPageTests.cs" />
