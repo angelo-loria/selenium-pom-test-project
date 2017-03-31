@@ -1,7 +1,7 @@
 # selenium-pom-test-project
 Angelo Loria 01/2017
 
-This is a C#/Selenium project demostrating a page object model framework, running tests on http://store.demoqa.com/. 
+This is a C#/Selenium project demostrating a page object model framework, running tests on http://store.demoqa.com/. The framework utilizes MSTest, and can easily be built/executed using VS.Test.Console, which is great for easily integrating with CI tools like Jenkins.
 
 # Test Classes
 Test classes are located in the Tests folder. There are currently three test classes set up; each class contains tests for a different section of the website. These classes contain the actual tests, each of which is in its own TestMethod. These TestMethods call methods from the various Page classes. The Test classes also utilize methods located in the TestHelper class through inheritance. 
